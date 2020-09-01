@@ -101,7 +101,7 @@ public class RecruitDialog extends JDialog{
 	    	b.setToolTipText(game.getAntText(s));
 	    	b.addActionListener(new ActionListener() {
 	    		public void actionPerformed(ActionEvent e) {
-    				int yesNo = JOptionPane.showConfirmDialog(null, "WARNING: Cannot undo Scout Ant\nClicking undo on a Scout Ant will reopen the scouting report", "Recruit Scout Ant?", JOptionPane.YES_NO_OPTION);
+    				int yesNo = JOptionPane.showConfirmDialog(null, "WARNING: Cannot undo Scout Ant\nClicking undo on a Scout Ant will reopen the scouting report\nRecruit anyway?", "Recruit Scout Ant?", JOptionPane.YES_NO_OPTION);
     				//JOptionPane.showMessageDialog(RecruitDialog.this, "Clicking undo", "Recruited Scout Ant", JOptionPane.INFORMATION_MESSAGE);
 
     				if (yesNo == 0 && game.recruitAnt(s) == 1) {

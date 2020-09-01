@@ -13,12 +13,14 @@ import java.util.Vector;
  */
 public class Game implements GameInterface {
 
+	/******************** constant variables ********************/
+	String UNDO =  "Undo Recruit";
+
     /******************** instance variables ********************/
 	int food;
 	int roundNumber;
 	int armyCounter;
 	boolean gameOver;
-	String undo;
 	Vector<Ant> colony;
 	Vector<Zombie> horde;
 
@@ -35,11 +37,10 @@ public class Game implements GameInterface {
 		//Initializes colony as empty vector of type Ant
 		colony = new Vector<Ant>();
 		//Initializes horde as empty vector of type Zombie
-		horde = new Vector<Zombie>();
-		
-		undo = "Undo Recruit";
-		
+		horde = new Vector<Zombie>();		
 	}
+
+
 	/**
 	 * Checks if the entered Ant Type is available in this game
 	 * by checking the Ant Types provided in the getAntTypes() 
@@ -188,20 +189,23 @@ public class Game implements GameInterface {
      * @return true if the player may recruit the ant, false if not.
      */
 	public int recruitAnt(String antType) {
-
-		if(antType.equals(undo)){
-          if(colony.get(colony.size() - 1).getDesc().equals("Scout Ant")){
-        	return -1;
-          } else if(colony.size() > 0){
-			Ant curAnt = colony.get(colony.size() - 1);
-			food += curAnt.getCost();
-			colony.remove(colony.size() - 1);
-			return 1;
-		  } else {
-			
-			return 0;
-		  }
+		// Undoes the previous and recruitment if the user enters Undo
+		if(antType.equals(UNDO)){
+			// Does nothing if there are no ants
+			if(colony.size() <= 0){
+				return 0;
+			}
+			// Cannot undo scout ant for competative advantage
+			if(colony.get(colony.size() - 1).getDesc().equals("Scout Ant")){
+				return -1;
+			} else {
+				Ant curAnt = colony.get(colony.size() - 1);
+				food += curAnt.getCost();
+				colony.remove(colony.size() - 1);
+				return 1;
+			}
 		}
+		
 		//Checks if the Ant is available in this game and buying the ant would not result in negative food
 		if(isInGame(antType) && food - getAntCost(antType) >= 0){
 			//Creates an Ant of the requested type
@@ -219,9 +223,9 @@ public class Game implements GameInterface {
 			//Successfully recruited Ant
 			return 1;
 			
-		} else{
-			return 0;
 		}
+
+		return 0;
 	}
 
     /**
@@ -325,7 +329,7 @@ public class Game implements GameInterface {
 		ants[10] = "Thief Ant";		
 		ants[11] = "Weaver Ant";
 		ants[12] = "Scout Ant";
-		ants[13] = undo;
+		ants[13] = UNDO;
 		
 		return ants;
 	}
@@ -337,7 +341,7 @@ public class Game implements GameInterface {
 	public int getAntCost(String type) {
 		
 
-		if(type.equals(undo)){
+		if(type.equals(UNDO)){
 			return 0;
 		}
 		//Checks if the type is available in this game
@@ -358,7 +362,7 @@ public class Game implements GameInterface {
 	public String getAntText(String type) {
 		
 
-		if(type.equals(undo)){
+		if(type.equals(UNDO)){
 			return "Undo last recruited ant if you made a mistake or review the scouting report of a Scout Ant";
 		}
 		//Checks if the type is available in this game
