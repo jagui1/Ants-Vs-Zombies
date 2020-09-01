@@ -1,0 +1,14 @@
+# Ants vs Zombies
+
+A made up game using OOP properties to create an army of ants that battle oncoming zombies.
+
+# To play: 
+
+* Run program 
+* Recruit Ants using the earned resources that you will face the next round with
+* Fight with the ants to destroy the Zombies
+
+# Future features:
+
+* Currently very static and simple UI - plan to update and add more features
+* After features are satisfactor plan to convert the program to an android app
