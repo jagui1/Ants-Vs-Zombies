@@ -43,7 +43,7 @@ public interface GameInterface {
      * Read and parse the Zombie String within a zombie file.
      * @param filename File containing Zombie String
      */
-    public void readHordeFile(String filename);
+    public void readHordeData(String filename);
 
     /**
      * Return a string that lists all of the zombies in the current

@@ -5,7 +5,6 @@
 
 package src.main.java.proj4;
 
-import java.io.*;
 import javax.swing.*;
 
 public class Driver {
@@ -13,18 +12,18 @@ public class Driver {
 	GameInterface game = new Game();
 
 	// Initialize levels
-	String[] hordes = {"../../../resources/horde_1.data", 
-			"../../../resources/horde_2.data", 
-			"../../../resources/horde_3.data", 
-			"../../../resources/horde_4.data", 
-			"../../../resources/horde_5.data"};
+	String[] hordes = {"SZI1", 
+					   "GA", 
+			           "RS9Z2", 
+			           "V1", 
+			           "INNV"};
 
-	String lastFilename;
+	String zombieString;
 
 	while (!game.isGameOver()) {
-		lastFilename = hordes[(game.getRoundNumber()-1)%5];
+		zombieString = hordes[(game.getRoundNumber()-1)%5];
 
-		game.readHordeFile(lastFilename);
+		game.readHordeData(zombieString);
 
 	    new RecruitDialog(game);
 
@@ -33,5 +32,6 @@ public class Driver {
 
 	JOptionPane.showMessageDialog(null, game.getEndingMessage(), "Ants Versus Zombies", JOptionPane.INFORMATION_MESSAGE);
 	System.exit(0);
-    }
+	}
+	
 }

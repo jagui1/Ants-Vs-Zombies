@@ -3,10 +3,6 @@ package src.main.java.proj4;
 
 import src.main.java.ants.*;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Vector;
 
 /**
@@ -230,40 +226,22 @@ public class Game implements GameInterface {
 
     /**
      * Read and parse the Zombie String within a zombie file.
-     * @param filename File containing Zombie String
+     * @param zombieString String containing the Horde data
      */
-	public void readHordeFile(String filename) {
-		FileReader file;
-		BufferedReader buf;
-		
-		try {
-			file = new FileReader(filename);
-			buf = new BufferedReader(file);
-			//Takes information in the file
-			String zombieString = buf.readLine();
-
-			//Loops through each character in the string
-			for (int i = 0; i < zombieString.length(); i++){
-			    char z = zombieString.charAt(i);
-			    //Checks if the character is 1-9
-			    if(Character.isDigit(z)){
-			    	//Creates copies of the previous zombie the entered amount of times
-			    	for(int j = 0; j < Character.getNumericValue(z); j++){
-			    		horde.add(Zombie.makeZombie(zombieString.charAt(i-1)));
-			    	}
-			    } else {
-			    	//Adds the zombie to the horde if character is not a digit
-			    	horde.add(Zombie.makeZombie(z));
+	public void readHordeData(String zombieString) {
+		//Loops through each character in the string
+		for (int i = 0; i < zombieString.length(); i++){
+			char z = zombieString.charAt(i);
+			//Checks if the character is 1-9
+			if(Character.isDigit(z)){
+				//Creates copies of the previous zombie the entered amount of times
+				for(int j = 0; j < Character.getNumericValue(z); j++){
+					horde.add(Zombie.makeZombie(zombieString.charAt(i-1)));
 				}
-				buf.close();
+			} else {
+				//Adds the zombie to the horde if character is not a digit
+				horde.add(Zombie.makeZombie(z));
 			}
-		} catch (FileNotFoundException e) {
-			System.err.println("File was not found.");
-			e.printStackTrace();
-			
-		} catch (IOException e) {
-			System.err.println("IO exception caught.");
-			e.printStackTrace();
 		}
 	}
 

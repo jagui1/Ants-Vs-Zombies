@@ -21,47 +21,23 @@ public abstract class Ant {
 	 * @return a new instance of an Ant class, null if invalid Ant type
 	 */
 	public static Ant makeAnt(String type) {
-    	if(type.equals("Army Ant")){ 
-    		return new ArmyAnt();
-    		
-    	} else if(type.equals("Bullet Ant")){
-    		return new BulletAnt();
-    		
-    	} else if(type.equals("Carpenter Ant")){
-    		return new CarpenterAnt();
-    		
-    	} else if(type.equals("Citronella Ant")){
-    		return new CitronellaAnt();
-    		
-    	} else if(type.equals("Devil Ant")){
-    		return new DevilAnt();
-    		
-    	} else if(type.equals("Fire Ant")){
-    		return new FireAnt();
-    		
-    	} else if(type.equals("Leafcutter Ant")){
-    		return new LeafcutterAnt();
-    		
-    	} else if(type.equals("Pharoh Ant")){
-    		return new PharohAnt();
-    		
-    	} else if(type.equals("Shadow Ant")){
-    		return new ShadowAnt();
-    				
-    	} else if(type.equals("Sugar Ant")){
-    		return new SugarAnt();
-    		
-    	} else if(type.equals("Thief Ant")){
-    		return new ThiefAnt();
-    		
-    	}else if(type.equals("Weaver Ant")){
-    		return new WeaverAnt();
-    		
-    	} else if(type.equals("Scout Ant")){
-    		return new ScoutAnt();
-    	} else {
-    		return null;
-    	}
+		switch(type){
+			case "Army Ant": return new ArmyAnt();
+			case "Bullet Ant": return new BulletAnt();
+			case "Carpenter Ant": return new CarpenterAnt();
+			case "Citronella Ant": return new CitronellaAnt();
+			case "Devil Ant": return new DevilAnt();
+			case "Fire Ant": return new FireAnt();
+			case "Leafcutter Ant": return new LeafcutterAnt();
+			case "Pharoh Ant": return new PharohAnt();
+			case "Shadow Ant": return new ShadowAnt();
+			case "Sugar Ant": return new SugarAnt();
+			case "Thief Ant": return new ThiefAnt();
+			case "Weaver Ant": return new WeaverAnt();
+			case "Scout Ant": return new ScoutAnt();
+		}
+
+		return null;	
 	}
 	/**
 	 * Creates an Ant with the entered attributes
